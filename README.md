@@ -1,0 +1,14 @@
+# Informatyka_Projekt_2
+Program, czyli wtyczka do QGIS, umożliwia podstawowe pomiary na punktach z określonymi współrzędnymi (różnica wysokości, długość odcinka, azymut, azymut odwrotny, pole powierzchni, zliczanie ilości wybranych punktów). Użytkownik może wybrać jednostki odpowiednie do danej funkcji ([metry], [grady, stopnie dziesiętne], [m², ary, hektary]).
+
+Wtyczka została napisana dla wersji QGIS 3.34.7. 
+
+Wtyczka została stworzona w języku Python 3.11.5 i przetestowana na systemie Windows 11.
+
+Wtyczka umożliwia wybór warstwy, na której będą wykonywane obliczenia (jeśli użytkownik zaznaczy punkty z innej warstwy, niż wybrana, wtyczka nie wykona obliczeń). Można wybrać jednostki dla azymutu (grady, stopnie dziesiętne) oraz pola powierzchni (m², ary, hektary). Wtyczka oferuje opcję rysowania poligonu, który powstaje na nowej warstwie. Umożliwia obliczanie różnic wysokości między dwoma punktami (metry), gdzie punkt od id1 jest pierwszym, a id2 kolejnym. Różnica jest obliczana jako punkt(id2) - punkt(id1). Można także obliczać długość odcinka między dwoma punktami (metry), azymut między dwoma punktami (id(1)-id(2)) oraz azymut odwrotny (grady, stopnie dziesiętne). Pole powierzchni (m², ary, hektary) jest liczone na podstawie środka ciężkości figury geometrycznej i połączenia punktów zgodnie z ruchem wskazówek zegara, stosując metodę liczenia pola Gaussa. Wtyczka umożliwia także zliczanie punktów.
+
+Wtyczka może wczytywać dane z pliku .txt (przykład danych: "X;Y;h" "638935.159;485769.262;86.848"). Przykładowe dane znajdują się w pliku "Przykladowe_wspolrzedne.txt" w repozytorium. Obsługiwane są wyłącznie współrzędne z układu PL2000; w przypadku innych układów wtyczka może błędnie obliczyć dane. Po wczytaniu pliku, aby załadować nowe współrzędne, należy zmienić nazwę wczytanej warstwy, inaczej zostanie ona zastąpiona przez nowy plik. Wtyczka może wyświetlać współrzędne w GUI wtyczki (X, Y w metrach) oraz identyfikatory punktów. Posiada przyciski do czyszczenia listy współrzędnych i wszystkich pól oraz przycisk do zapisywania obliczeń do pliku .txt o nazwie "Plik_wynikowy_wtyczki_AW_IW.txt", który zapisuje się w domyślnym folderze zapisu plików QGIS. W pierwszej linii pliku znajduje się liczba punktów wybranych przez użytkownika, a następnie współrzędne XY, azymut, odległość, różnica wysokości i pole powierzchni.
+
+Wszystkie obliczenia wtyczka wykonuje dla układu współrzędnych PL2000, EPSG=2180.
+
+Błędy: Obliczanie różnic wysokości nie będzie działać, gdy parametr wysokości nie znajduje się w trzeciej kolumnie atrybutów punktów lub gdy atrybut wysokości nie istnieje.
