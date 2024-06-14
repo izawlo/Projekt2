@@ -182,8 +182,8 @@ class WtyczkaProjekt2Dialog(QtWidgets.QDialog, FORM_CLASS):
             wyb_war = iface.activeLayer()
             wybrane = wyb_war.selectedFeatures()
             for i in wybrane:
-                K.append(i[2])
-            roznica_wysokosci=K[1]-K[0]
+                K.append(i['wysokosc'])
+            roznica_wysokosci=float(K[1])-float(K[0])
             self.roznica_wysokosci_wynik.setText(f'Róznica wysokosci wynosi (punkt id:1- id:2): {roznica_wysokosci:.3f}[m]')
         elif liczba_elementów < 2:
             self.roznica_wysokosci_wynik.setText("Błąd")
